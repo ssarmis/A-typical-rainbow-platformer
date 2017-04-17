@@ -1,0 +1,23 @@
+<html>
+
+	<head>
+		<style type="text/css">
+			#game-canvas {
+			  image-rendering: optimizeSpeed;             /* Older versions of FF          */
+			  image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+			  image-rendering: -webkit-optimize-contrast; /* Safari                        */
+			  image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+			  image-rendering: pixelated;                 /* Awesome future-browsers       */
+			  -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
+			}
+		</style>
+
+		<script src="game.js"></script>
+	</head>
+
+	<body>
+		<canvas id="game-canvas" width="600" height="400">Your browser does not support HTML5, please stop using IE, Safari or
+		other medieval browsers :)</canvas>
+	</body>
+
+</html>
