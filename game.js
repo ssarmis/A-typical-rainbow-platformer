@@ -5,19 +5,17 @@ var w;
 var h;
 var grid_size = 96;
 var tiles = [
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
 var camera;
@@ -54,10 +52,16 @@ window.onload = function(){
 	
 	for(var y = 0; y < h; y++){
 		for(var x = 0; x < w; x++){
-			if(tiles[y][x] == 1) blocks.push(new Block(0, x * grid_size, y * grid_size, "res/tex/sheet.png"));
+			if(tiles[y][x] == 1) {
+				// if(Math.floor(Math.random() * 10) == 0)
+					// entities.push(new Roopa(x * 48, y * 48 - 48));
+
+				blocks.push(new Block(0, x * grid_size, y * grid_size, "res/tex/sheet.png"));
+			}
 			else blocks.push(null);
 		}
 	}
+	entities.push(new Roopa(0, 0));
 
 	setInterval(main_loop, 1000 / 60);
 }
@@ -70,17 +74,17 @@ function main_loop(){
 
 
 	camera.update();
-
+	for(var i = 0; i < blocks.length; i++){
+		if(blocks[i] != null)
+		blocks[i].render();
+	}
 	for(var i = 0; i < entities.length; i++){
 		if(!entities[i].removed){
 			entities[i].update();
 			entities[i].render();
 		} else entities.splice(i, 1);
 	}
-	for(var i = 0; i < blocks.length; i++){
-		if(blocks[i] != null)
-		blocks[i].render();
-	}
+
 
 }
 
@@ -96,8 +100,8 @@ function Player(){
 	var img = new Image();
 	var time = 0;
 	var del = 5;
-	var speed = 3;
-	var speed_cap = 12;
+	var speed = 5;
+	var speed_cap = 20;
 
 	var MOVE_PATH = "res/tex/walk_animation_player.png";
 	var MOVE_PATH_REVERSE = "res/tex/walk_animation_player_reverse.png";
@@ -109,10 +113,11 @@ function Player(){
 	var tw = grid_size;
 	var th = grid_size;
 	var grounded = false;
-	var grav_acc = 0.3;
+	var grav_acc = 0.5;
 	var gravity = 0;
+	var absolute_vel = 12;
 	var jump_vel = 0;
-	var jump_height = th / 4;
+	var jump_height = 30;
 
 	this.update = function(){
 		time++;
@@ -123,7 +128,7 @@ function Player(){
 		if(!grounded){
 			gravity += grav_acc;
 			this.ya += gravity;
-			if(this.ya > 10) this.ya = 10;
+			if(this.ya > absolute_vel) this.ya = absolute_vel;
 		} else{
 			gravity = 0;
 			this.ya = 0;
@@ -232,6 +237,150 @@ function Player(){
 	}
 }
 
+
+function Roopa(x, y){
+
+	this.removed = false;
+	this.x = x;
+	this.y = y;
+	this.xa = 0;
+	this.ya = 0;
+
+	var img = new Image();
+	var time = 0;
+	var del = 5;
+	var speed = 3;
+	var speed_cap = 12;
+
+	var PATH = "res/tex/walk_animation_roopa.png";
+	
+	var current_file = PATH;
+
+	var left = false;
+	var right = false;
+
+	left = Math.floor(Math.random() * 2) == 0;
+	right = !left;
+	this.xa = left ? -speed : speed;
+
+	var tw = grid_size;
+	var th = grid_size;
+	var grounded = false;
+	var grav_acc = 0.3;
+	var gravity = 0;
+
+	this.update = function(){
+		time++;
+		time %= del * 5;
+
+		grounded = this.on_ground(this.ya);
+
+		if(!grounded){
+			gravity += grav_acc;
+			this.ya += gravity;
+			if(this.ya > 7) this.ya = 7;
+		} else{
+			gravity = 0;
+			this.ya = 0;
+		}
+
+
+		if(!this.check_ground(this.xa)) this.xa = -this.xa;
+
+		if(this.xa < -speed_cap) this.xa = -speed_cap;
+		if(this.xa > speed_cap) this.xa = speed_cap;
+		// console.log(grounded);
+		this.move(this.xa, this.ya);
+	}
+
+	this.render = function(){
+		var xx = this.x - camera.x;
+		var yy = this.y - camera.y;
+
+		if(time < (del * 5) / 2)
+			this.draw_image(current_file, xx, yy, 16, 16, 0, 0, tw, th);
+		else 
+			this.draw_image(current_file, xx, yy, 16, 16, 16, 0, tw, th);
+
+	}
+
+	this.move = function(xa, ya){
+		if(xa != 0 && ya != 0){
+			this.move(xa, 0);
+			this.move(0, ya);
+			return;
+		}
+
+		if(this.can_pass(xa, ya)){
+			this.x += xa;
+			this.y += ya;
+			grounded = false;
+		} else grounded = true;
+	}
+
+	this.can_pass = function(xa, ya){
+		var x0 = this.x + tw / 4 + xa;
+		var x1 = this.x + tw - tw / 4 + xa;
+		var y0 = this.y + th / 4 + ya;
+		var y1 = this.y + th + ya - 10;
+
+		for(var i = 0; i < blocks.length; i++){
+			if(blocks[i] != null){
+				if(x0 < blocks[i].x1 && x1 > blocks[i].x0 &&
+			   	y0 < blocks[i].y1 && y1 > blocks[i].y0){
+			   		this.xa = -this.xa;
+					return false;	
+				} 
+			}
+		}
+
+		return true;
+	}
+
+	this.on_ground = function(ya){
+		var x0 = this.x + tw / 2;
+		var y0 = this.y + th + ya + 2;
+
+		context.fillStyle = "#ff0000";
+		context.fillRect(x0 - camera.x, y0 - camera.y, 5, 5);
+
+		for(var i = 0; i < blocks.length; i++){
+			if(blocks[i] != null){
+				if(x0 < blocks[i].x1 && x0 > blocks[i].x0 &&
+			   	y0 < blocks[i].y1 && y0 > blocks[i].y0) return true;
+			}
+		}
+		return false;
+	}
+
+	this.check_ground = function(xa){
+
+		var xx;
+		if(xa > 0)
+			xx = this.x + tw + 5 + xa;
+		else if(xa < 0)
+			xx = this.x - 5 + xa;
+
+		var yy = this.y + th + th / 2;
+		var tx = Math.floor(xx / grid_size);
+		var ty = Math.floor(yy / grid_size);
+
+
+
+		for(var i = 0; i < blocks.length; i++){
+			if(blocks[tx + ty * w] == null) return false;
+		}
+
+		return true;
+	}
+
+	this.draw_image = function(source, x, y, w, h, tx, ty, tw, th){
+		img.src = source;
+	    context.drawImage(img, tx, ty, w, h, x, y, tw, th);
+	}
+
+}
+
 function Block(id, x, y, path){
 
 	var img = new Image();
@@ -270,6 +419,7 @@ function Block(id, x, y, path){
 		img.src = source;
 	}
 }
+
 
 function Camera(){
 	this.x = 0;
