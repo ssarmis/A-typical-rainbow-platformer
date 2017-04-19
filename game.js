@@ -1,6 +1,9 @@
 var canvas;
 var context;
 
+var absolute_vel = 12;
+
+
 var w;
 var h;
 var grid_size = 96;
@@ -9,12 +12,12 @@ var tiles = [
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
@@ -74,10 +77,6 @@ function main_loop(){
 
 
 	camera.update();
-	for(var i = 0; i < blocks.length; i++){
-		if(blocks[i] != null)
-		blocks[i].render();
-	}
 	for(var i = 0; i < entities.length; i++){
 		if(!entities[i].removed){
 			entities[i].update();
@@ -85,6 +84,10 @@ function main_loop(){
 		} else entities.splice(i, 1);
 	}
 
+	for(var i = 0; i < blocks.length; i++){
+		if(blocks[i] != null)
+		blocks[i].render();
+	}
 
 }
 
@@ -110,14 +113,14 @@ function Player(){
 	var action = "MOVING";
 	var current_file = IDLE_PATH;
 
+	var history = [];
 	var tw = grid_size;
 	var th = grid_size;
 	var grounded = false;
-	var grav_acc = 0.5;
-	var gravity = 0;
-	var absolute_vel = 12;
+	var grav_acc = 0.98;
+	var gravity = grav_acc;
 	var jump_vel = 0;
-	var jump_height = 30;
+	var jump_height = 20;
 
 	this.update = function(){
 		time++;
@@ -125,13 +128,10 @@ function Player(){
 
 		grounded = this.on_ground(this.ya);
 
-		if(!grounded){
-			gravity += grav_acc;
+		if(grounded) this.ya = 0;
+		else {
 			this.ya += gravity;
 			if(this.ya > absolute_vel) this.ya = absolute_vel;
-		} else{
-			gravity = 0;
-			this.ya = 0;
 		}
 
 		if(Keys.pressed[37]) this.xa -= speed;
@@ -149,12 +149,26 @@ function Player(){
 		else action = "MOVING";
 
 		this.ya += jump_vel;
-		this.move(this.xa, this.ya);
+
+		if(this.xa != 0 || this.ya != 0){
+			history.push(new Vector2(this.x, this.y));
+			this.move(this.xa, this.ya);
+		}
+		if(time < del * 5 * 0.8) history.shift();
+		if(history.length > 20) history.shift();
 	}
+
+	var rainbow_colors = ["#9400D3", "#4B0082", "#0000FF", "#00FF00", "#FFFF00", "#FF7F00", "#FF0000"];
 
 	this.render = function(){
 		var xx = this.x - camera.x;
 		var yy = this.y - camera.y;
+
+		for(var i = 0; i < history.length; i++){
+			context.fillStyle = rainbow_colors[Math.floor(Math.random() * rainbow_colors.length)];
+			context.fillRect(history[i].x - camera.x + tw / 2 - 10 + i - history.length,
+			 history[i].y - camera.y + th / 2, i + 5, i + 5);
+		}
 
 		switch(action){
 			case "IDLE":
@@ -183,7 +197,6 @@ function Player(){
 				break;
 		}
 		
-
 	}
 
 	this.move = function(xa, ya){
@@ -196,20 +209,26 @@ function Player(){
 		if(this.can_pass(xa, ya)){
 			this.x += xa;
 			this.y += ya;
-			grounded = false;
-		} else grounded = true;
+		}
 	}
 
 	this.can_pass = function(xa, ya){
-		var x0 = this.x + tw / 4 + xa;
-		var x1 = this.x + tw - tw / 4 + xa;
+		var x0 = this.x + 30 + xa;
+		var x1 = this.x + tw - 40 + xa;
 		var y0 = this.y + th / 4 + ya;
 		var y1 = this.y + th + ya;
+
+		// context.fillStyle = "#ff0000";
+		// context.fillRect(x0 - camera.x, y0 - camera.y, 5, 5);
+		// context.fillRect(x1 - camera.x, y0 - camera.y, 5, 5);
+		// context.fillRect(x0 - camera.x, y1 - camera.y, 5, 5);
+		// context.fillRect(x1 - camera.x, y1 - camera.y, 5, 5);
 
 		for(var i = 0; i < blocks.length; i++){
 			if(blocks[i] != null){
 				if(x0 < blocks[i].x1 && x1 > blocks[i].x0 &&
 			   	y0 < blocks[i].y1 && y1 > blocks[i].y0){
+			   		this.xa = 0;
 					return false;	
 				} 
 			}
@@ -257,17 +276,13 @@ function Roopa(x, y){
 	var current_file = PATH;
 
 	var left = false;
-	var right = false;
-
-	left = Math.floor(Math.random() * 2) == 0;
-	right = !left;
-	this.xa = left ? -speed : speed;
+	var right = true;
 
 	var tw = grid_size;
 	var th = grid_size;
 	var grounded = false;
-	var grav_acc = 0.3;
-	var gravity = 0;
+	var grav_acc = 0.98;
+	var gravity = grav_acc;
 
 	this.update = function(){
 		time++;
@@ -275,21 +290,22 @@ function Roopa(x, y){
 
 		grounded = this.on_ground(this.ya);
 
-		if(!grounded){
-			gravity += grav_acc;
+		if(grounded) {
+			this.ya = -10;
+		} else {
 			this.ya += gravity;
-			if(this.ya > 7) this.ya = 7;
-		} else{
-			gravity = 0;
-			this.ya = 0;
+			if(this.ya > absolute_vel) this.ya = absolute_vel;
 		}
 
-
-		if(!this.check_ground(this.xa)) this.xa = -this.xa;
+		if(left) this.xa = -speed;
+		if(right) this.xa = speed;
+		//if(!this.check_ground(this.xa)) this.xa = -this.xa;
 
 		if(this.xa < -speed_cap) this.xa = -speed_cap;
 		if(this.xa > speed_cap) this.xa = speed_cap;
+
 		// console.log(grounded);
+
 		this.move(this.xa, this.ya);
 	}
 
@@ -314,8 +330,7 @@ function Roopa(x, y){
 		if(this.can_pass(xa, ya)){
 			this.x += xa;
 			this.y += ya;
-			grounded = false;
-		} else grounded = true;
+		}
 	}
 
 	this.can_pass = function(xa, ya){
@@ -328,7 +343,13 @@ function Roopa(x, y){
 			if(blocks[i] != null){
 				if(x0 < blocks[i].x1 && x1 > blocks[i].x0 &&
 			   	y0 < blocks[i].y1 && y1 > blocks[i].y0){
-			   		this.xa = -this.xa;
+			   		if(left) {
+			   			left = false;
+			   			right = true;
+			   		} else if(right) {
+			   			right = false;
+			   			left = true;
+			   		}
 					return false;	
 				} 
 			}
@@ -364,8 +385,6 @@ function Roopa(x, y){
 		var yy = this.y + th + th / 2;
 		var tx = Math.floor(xx / grid_size);
 		var ty = Math.floor(yy / grid_size);
-
-
 
 		for(var i = 0; i < blocks.length; i++){
 			if(blocks[tx + ty * w] == null) return false;
@@ -406,11 +425,13 @@ function Block(id, x, y, path){
 		var d = blocks[tx + (ty + 1) * w] == null;
 		var r = blocks[(tx + 1) + ty * w] == null;
 		var l = blocks[(tx - 1) + ty * w] == null;
-		if(u) this.draw_image(path, xx, yy - th, 16, 16, 16, 0, tw, th);	
-		if(d) this.draw_image(path, xx, y1, 16, 16, 48 + 16, 0, tw, th);	
-		if(l) this.draw_image(path, xx - tw, yy, 16, 16, 48, 0, tw, th);	
-		if(r) this.draw_image(path, x1, yy, 16, 16, 32, 0, tw, th);	
+
 		this.draw_image(path, xx, yy, 16, 16, 0, 0, tw, th);
+
+		if(u) this.draw_image(path, xx, yy - th + 2, 16, 16, 16, 0, tw, th);	
+		if(d) this.draw_image(path, xx, y1 - 2, 16, 16, 48 + 16, 0, tw, th);	
+		if(l) this.draw_image(path, xx - tw + 2, yy, 16, 16, 48, 0, tw, th);	
+		if(r) this.draw_image(path, x1 - 2, yy, 16, 16, 32, 0, tw, th);	
 
 	}
 
@@ -430,4 +451,9 @@ function Camera(){
 		this.y = player.y - canvas.height / 2;
 	}
 
+}
+
+function Vector2(x, y){
+	this.x = x;
+	this.y = y;
 }
